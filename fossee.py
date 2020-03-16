@@ -1,4 +1,3 @@
-#What you are missing it that the joined QLineEdit on the connecting line needs to be created when the join button is pressed. I have removed any parts unnecessary parts of your code, and cleaned it up a bit. I also added in some error handling. The function move_join_edit will keep the QLineEdit in the center of the line, and move it around as the circles get moved by the mouse. Review the Circle class and the join_action function in the main class. It not only pairs up two circles but ensures there are no duplicates and mixed up lines / text boxes.
 
 import sys, random
 from PyQt5.QtWidgets import *
