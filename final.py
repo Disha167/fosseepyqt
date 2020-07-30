@@ -24,13 +24,20 @@ class Window(QMainWindow):
         joinb.setGeometry(100, 0, 100, 30)
         joinb.clicked.connect(self.join_action)
         joinb.setToolTip('This is for joining the two circles with a line')
+        # Delete = QPushButton("Delete", self)
+        # Delete.setGeometry(200, 0, 100, 30)
+        # Delete.clicked.connect(self.DeleteFigure)
+        # Delete.setToolTip("<h3>This is for deleting the circle from canvas area<h3>")
         Report = QPushButton("Generate Report", self)
         Report.setGeometry(QRect(200, 0, 100, 30))
         Report.clicked.connect(self.printPDF)
         Report.setToolTip("This is for generating pdf report of connection between two circles")
         self.textEdit = QTextEdit()
         self.textEdit.setGeometry(100, 150, 400, 400)
-       
+        # Saveimg = QPushButton("Save", self)
+        # Saveimg.setGeometry(QRect(300, 0, 120, 30))
+        # Saveimg.setToolTip("This is for saving an image of canvas area")
+        # self.resize(640, 480)
 
     def on_clicked(self):
         coor = (random.randrange(self.width() - 100), random.randrange(self.height() - 100))
@@ -118,7 +125,18 @@ class Window(QMainWindow):
     def mouseReleaseEvent(self, event):
         self.current_circle = None
 
-
+    # def DeleteFigure(self, event):
+    #     for circle in self.circles:
+    #         line = QLineF(circle.center(), event.pos())
+    #
+    #         if line.length() < circle.width() / 2:
+    #             self.current_circle = circle
+    #             self.circles.remove(circle)
+    #             self.update()
+    #             break
+    #
+    #         else:
+    #             pass
 
     def contextMenuEvent(self, event):
         contextmenu = QMenu(self)
@@ -137,6 +155,11 @@ class Window(QMainWindow):
             printer.setOutputFormat(QPrinter.PdfFormat)
             printer.setOutputFileName(filen)
             self.textEdit.document().print(printer)
+
+    def saveImage(self):
+        QFile file("yourFile.png");
+        file.open(QIODevice::WriteOnly);
+        pixmap.save( & file, "PNG");
 
 
 class Circle(QRect):
@@ -167,4 +190,3 @@ if __name__ == "__main__":
     Rect = Window()
     Rect.show()
     sys.exit(app.exec_())
-
